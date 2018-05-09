@@ -1,0 +1,9 @@
+/META-INF/
+/com/
+/hibernate.cfg.xml
+/log4j.properties
+/proxool.xml
+/spring-actions.xml
+/spring-base.xml
+/spring-dao.xml
+/struts.xml

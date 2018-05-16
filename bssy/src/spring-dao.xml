@@ -30,6 +30,8 @@
 	<bean id="pinglunDao" class="com.dao.impl.PinglunDaoImpl" >
 		<property name="sessionFactory"><ref bean="sessionFactory" /></property>
 	</bean>
-
+    <bean id="similarDao" class="com.dao.impl.SimilarDaoImpl" >
+		<property name="sessionFactory"><ref bean="sessionFactory" /></property>
+	</bean>
 	
 </beans>

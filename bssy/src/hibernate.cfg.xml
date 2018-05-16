@@ -39,7 +39,7 @@
 		<mapping class="com.model.Content"/>
 		<mapping class="com.model.User"/>
 		<mapping class="com.model.Pinglun"/>
-		
+		<mapping class="com.model.Similar"/>
 		
 		
 		

@@ -20,5 +20,6 @@ public interface ContentDao  {
 	
 	public int selectBeanCount(final String where);
 	
+	public List<Content> selectAllList(String where);
 	
 }

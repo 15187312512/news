@@ -59,6 +59,16 @@ public class ContentDaoImpl extends HibernateDaoSupport implements  ContentDao{
 		this.getHibernateTemplate().update(Content);
 		
 	}
+
+	
+	@SuppressWarnings("unchecked")
+	public List<Content> selectAllList(String where) {
+		List<Content> list = this.getHibernateTemplate().find("from Content " +where);
+		if(list.size()==0){
+			return null;
+		}
+		return list;
+	}
 	
 	
 }

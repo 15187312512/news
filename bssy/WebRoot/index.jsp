@@ -90,6 +90,7 @@ function registershow(){
        	  
    	    <a href="wangzhanmethod!lanmulist.action?id=${bean.id }" class="current">${bean.lanmuming }</a></li>
       </c:forEach>
+      <li><a href="manage/login.jsp" class="current">后台管理</a></li>
     </ul>
   </div>
   <!-- end of menu -->
@@ -110,7 +111,7 @@ function registershow(){
         <table style="font-size: 20px;" width="100%"  cellspacing="15">
          <c:forEach items="${contentlist}" var="bean">
         <tr>
-        <td width="80%"><a href="wangzhanmethod!showcontent.action?id=${bean.id }">
+        <td width="80%"><a style="text-decoration:none" href="wangzhanmethod!showcontent.action?id=${bean.id }">
         <span style="color: blue;">
         <c:if test="${fn:length(bean.title)>15}">${fn:substring(bean.title,0, 15)}...</c:if>
         <c:if test="${fn:length(bean.title)<=15}">${bean.title }</c:if>
@@ -291,22 +292,21 @@ setTimeout('CompScr()',Speed);
       <div id="column_w290">
       <c:if test="${user==null}">
        &nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="wangzhanmethod!login.action" >【用户登录】</a>
+      <a style="text-decoration:none" href="wangzhanmethod!login.action" >【用户登录】</a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <a href="####" onclick="registershow()">【用户注册】</a>
+       <a style="text-decoration:none" href="####" onclick="registershow()">【用户注册】</a>
       </c:if>
       <c:if test="${user!=null}">
       欢迎您，${user.username } &nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="wangzhanmethod!loginout.action" >【用户退出】</a>
+      <a style="text-decoration:none" href="wangzhanmethod!loginout.action" >【用户退出】</a>
       </c:if>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="manage/login.jsp">【管理后台】</a>
+
       
         <div class="header_02">新闻点击排行</div>
         <table style="font-size: 20px;" width="100%"  cellspacing="15">
          <c:forEach items="${paihanglist}" var="bean">
         <tr>
-        <td width="80%"><a href="wangzhanmethod!showcontent.action?id=${bean.id }">
+        <td width="80%"><a style="text-decoration:none" href="wangzhanmethod!showcontent.action?id=${bean.id }">
         <span style="color: blue;">
         <c:if test="${fn:length(bean.title)>8}">${fn:substring(bean.title,0, 8)}...</c:if>
         <c:if test="${fn:length(bean.title)<=8}">${bean.title }</c:if>

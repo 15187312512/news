@@ -10,18 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.dao.ContentDao;
 import com.dao.LanmuDao;
 import com.dao.ManageDao;
 import com.dao.PinglunDao;
+import com.dao.SimilarDao;
 import com.dao.UserDao;
 import com.model.Content;
 import com.model.Lanmu;
 import com.model.Manage;
 import com.model.Pinglun;
+import com.model.Similar;
 import com.model.User;
 import com.opensymphony.xwork2.ActionSupport;
+import com.service.SimilarService;
+import com.util.Cosine;
 import com.util.Util;
 
 
@@ -306,7 +312,18 @@ public class HoutaiAction extends ActionSupport {
 		this.setUrl("manage/content/contentadd.jsp");
 		return SUCCESS;
 	}
-//添加新闻操作
+	
+	private SimilarDao similarDao;
+	
+    public SimilarDao getSimilarDao() {
+		return similarDao;
+	}
+
+	public void setSimilarDao(SimilarDao similarDao) {
+		this.similarDao = similarDao;
+	}
+
+	//添加新闻操作
 	public void contentadd2() throws IOException {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String content = request.getParameter("content1");
@@ -317,7 +334,19 @@ public class HoutaiAction extends ActionSupport {
 		bean.setLanmu(lanmuDao.selectBean(" where id= "+lanmu));
 		bean.setTitle(title);
 		bean.setCreatetime(new Date());
+		//获取插入之前的所有新闻列表，用于计算和和该新增新闻的相似度
+		List<Content> contentList=contentDao.selectAllList("where contentlock=0");
 		contentDao.insertBean(bean);
+		for (int i = 0; i < contentList.size(); i++) {
+			//计算两条新闻的相似度存入相似度表
+			String OldTitle=contentList.get(i).getTitle();
+			double similary=Cosine.getSimilarity(title, OldTitle);
+			Similar similar=new Similar();
+			similar.setContentCo(bean);
+			similar.setContentCt(contentList.get(i));
+			similar.setSim(similary);
+			similarDao.insertBean(similar);
+		}
 		HttpServletResponse resp = ServletActionContext.getResponse();
 		resp.setCharacterEncoding("utf-8");
 		PrintWriter out = resp.getWriter();
@@ -335,7 +364,17 @@ public class HoutaiAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-//更新新闻操作
+	private SimilarService similarService;
+	
+    public SimilarService getSimilarService() {
+		return similarService;
+	}
+
+	public void setSimilarService(SimilarService similarService) {
+		this.similarService = similarService;
+	}
+
+	//更新新闻操作
 	public void contentupdate2() throws IOException {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String content = request.getParameter("content1");
@@ -346,6 +385,8 @@ public class HoutaiAction extends ActionSupport {
 		bean.setLanmu(lanmuDao.selectBean(" where id= "+lanmu));
 		bean.setTitle(title);
 		contentDao.updateBean(bean);
+		//重新计算与其他新闻的相似度
+		similarService.calculateSim(bean);
 		HttpServletResponse resp = ServletActionContext.getResponse();
 		resp.setCharacterEncoding("utf-8");
 		PrintWriter out = resp.getWriter();
@@ -356,10 +397,13 @@ public class HoutaiAction extends ActionSupport {
 //删除新闻操作
 	public void contentdelete() throws IOException {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		Content bean = contentDao.selectBean(" where id= "
-				+ request.getParameter("id"));
-		bean.setContentlock(1);
-		contentDao.updateBean(bean);
+//		Content bean = contentDao.selectBean(" where id= "
+//				+ request.getParameter("id"));
+//		bean.setContentlock(1);
+//		contentDao.updateBean(bean);
+		String []id=request.getParameterValues("conIdList");
+		String id2=request.getParameter("conIdList");
+		System.out.println(id2);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
@@ -496,5 +540,6 @@ public class HoutaiAction extends ActionSupport {
 		out.close();
 	}
 	
+
 
 }

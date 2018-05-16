@@ -85,7 +85,7 @@ else if(inputCode != code ){
 <BODY onload="createCode()">
 <DIV id=div1>
 	<form action="houtaimethod!login.action" method="post"  onsubmit="return checkregisterform()">
-  <TABLE id=login height="100%" cellSpacing=0 cellPadding=0 width=800 align=center>
+  <TABLE id=login height="90%" cellSpacing=0 cellPadding=0 width=800 align=center>
     <TBODY>
       <TR id=main>
         <TD>
@@ -123,7 +123,7 @@ else if(inputCode != code ){
               </TR>
               <TR height=40>
                 <TD></TD>
-                <TD align=right>
+                <TD align=center>
                  <button type="submit" class="positive" name="Submit">
 								登录</button>
 								

@@ -2,6 +2,8 @@ package com.action;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,7 @@ import com.model.Lanmu;
 import com.model.Pinglun;
 import com.model.User;
 import com.opensymphony.xwork2.ActionSupport;
+import com.service.SimilarService;
 import com.util.Pager;
 
 
@@ -113,8 +116,17 @@ public class WangzhanAction extends ActionSupport {
 		this.setUrl("index.jsp");
 		return SUCCESS;
 	}
+	private SimilarService similarService;
 	
-	
+	public SimilarService getSimilarService() {
+		return similarService;
+	}
+
+	public void setSimilarService(SimilarService similarService) {
+		this.similarService = similarService;
+	}
+
+	//新闻详细页面
 	public String showcontent() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Content bean = contentDao.selectBean(" where id= "+ request.getParameter("id"));
@@ -130,7 +142,11 @@ public class WangzhanAction extends ActionSupport {
 		
 		
 		request.setAttribute("pingluncount", pinglunDao.selectBeanCount(" where  pinglunlock=0 and content.id="+bean.getId()));
-
+		
+		//推荐列表
+		int top=3;
+		List<Content> listSimList=similarService.getSimList(bean, top);
+		request.setAttribute("similarContentList",listSimList );
 		this.setUrl("content.jsp");
 		return SUCCESS;
 	}

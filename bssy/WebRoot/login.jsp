@@ -16,6 +16,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="description" content="Business Template is a free css template provided by www.865171.cn" />
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery.ennui.contentslider.css" rel="stylesheet" type="text/css" media="screen,projection" />
+<link href="layui/css/layui.css" rel="stylesheet" type="text/css" media="screen,projection" />
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="myjs/bootstrap.js"></script>
+
+    <script type="text/javascript">
+       $(function(){
+
+
+        erajs.onReady(function(){
+
+	       return true;
+	    },{
+	        needValidated : true,
+	        validationPath:'./validation/validation.xml',
+	        loadValidationXml:true,
+	        targetForm : 'loginForm'
+	    });
+
+
+
+})
+    </script>
 <script language="javascript" type="text/javascript">
 function clearText(field)
 {
@@ -35,7 +58,11 @@ function registershow(){
 </script>
 
     <style type="text/css">
-<!--
+    div{
+    margin:0px;
+    padding:0px;
+    }
+
 .STYLE1 {color: #000000}
 #Layer1 {
 	position:absolute;
@@ -95,9 +122,16 @@ function registershow(){
 	left: 0px;
 	top: 8px;
 }
+#logindemo {
+border: 2px solid #397DBA;	
+}
+#logindemo:hover {
+border: 2px solid #3B4E76;
+
+}
 .STYLE6 {font-family: "宋体"}
 .STYLE7 {color: #000000; font-family: "宋体"; }
--->
+
     </style>
 </head>
 <body ><center>
@@ -127,26 +161,34 @@ function registershow(){
 
  <div id="Layer6">
 <div id="Layer1">
-  <table width="510" height="311" border="1">
+  <table id="logindemo" width="350" height="314" border="1">
     <tr>
-      <td width="500" height="305" background="images/db.jpg"><div id="Layer2">
-	  <form action="wangzhanmethod!login2.action" method="post">
-        <table width="68%" height="174" align="left"  cellspacing="15" style="font-size: 20px;">
-        
-        <tr>
-        <td width="33%"><div align="center"><span class="STYLE7">用户名</span><span class="STYLE6">:</span></div></td>
-        <td width="67%">          <input type="text" name="username" size="20"/>        </td>
-        </tr>
-        <tr>
-        <td width="33%"><div align="center"><span class="STYLE1">密&nbsp;&nbsp; 码</span>:</div></td>
-        <td width="67%">          <input type="password" name="password" size="21"/>        </td>
-        </tr>
-       <tr>
-        <td width="33%" height="46"><div align="center"><span class="STYLE1">操&nbsp;&nbsp; 作:</span></div></td>
-        <td width="67%"><input type="submit" value="提交"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="重置"/></td>
-        </tr>
-        </table>
-        </form>
+      <td width="500" height="305" background=""><div id="Layer2">
+      
+      
+      
+      <form name="loginForm" class="layui-form" action="wangzhanmethod!login2.action" method="post" >
+      
+      <div class="layui-form-item" >
+    <label class="layui-form-label">用户名</label>
+    <div class="layui-input-block">
+      <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" style="width:250px">
+    </div>
+  </div>
+   <div class="layui-form-item" style="margin-buttom:30px">
+    <label class="layui-form-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+    <div class="layui-input-inline">
+      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"  style="width:250px">
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block" style="margin-top:30px">
+      <button class="layui-btn" lay-submit lay-filter="formDemo" style="text-align:center">登录</button>
+      <a href="" class="layui-btn layui-btn-normal" style="text-decoration:none" style="text-align:center">注册</a>
+    </div>
+  </div>
+    
+      </form>
+      
 	  </div></td>
     </tr>
   </table>
@@ -190,6 +232,15 @@ function registershow(){
  var MyMar=setInterval(Marquee,speed)
  demo.onmouseover=function() {clearInterval(MyMar)}
  demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+ </script>
+ <script>
+ $(function(){
+ //一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+});
+ });
  </script>
 </div>
 

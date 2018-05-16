@@ -17,6 +17,8 @@
 		<property name="contentDao"><ref bean="contentDao" /></property>
 		<property name="userDao"><ref bean="userDao" /></property>
 		<property name="pinglunDao"><ref bean="pinglunDao" /></property>
+		<property name="similarDao"><ref bean="similarDao" /></property>
+		<property name="similarService"><ref bean="similarService" /></property>
 	</bean>
 	
 	<bean id="wangzhanAction" class="com.action.WangzhanAction" scope="prototype">
@@ -24,6 +26,7 @@
 			<property name="lanmuDao"><ref bean="lanmuDao" /></property>
 			<property name="userDao"><ref bean="userDao" /></property>
 			<property name="pinglunDao"><ref bean="pinglunDao" /></property>
+			<property name="similarService"><ref bean="similarService" /></property>
 	</bean>
 	
 	

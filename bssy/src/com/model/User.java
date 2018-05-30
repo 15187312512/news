@@ -24,6 +24,9 @@ public class User implements Serializable{
 	
 	private Date createtime;
 
+	private String email;
+	
+	private String city;
 
 	public Date getCreatetime() {
 		return createtime;
@@ -68,6 +71,24 @@ public class User implements Serializable{
 	}
 	
 	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}

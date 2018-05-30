@@ -20,5 +20,7 @@ public interface PinglunDao  {
 	
 	public int selectBeanCount(final String where);
 	
+	/*统计获取文章评论条数*/
+	public List<Object> selectCommentsCount(String where,int top);
 	
 }

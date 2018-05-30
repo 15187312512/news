@@ -3,6 +3,7 @@ package com.dao.impl;
 import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -10,6 +11,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.dao.PinglunDao;
 import com.model.Pinglun;
+import com.model.Similar;
 
 
 
@@ -59,6 +61,16 @@ public class PinglunDaoImpl extends HibernateDaoSupport implements  PinglunDao{
 		this.getHibernateTemplate().update(Pinglun);
 		
 	}
-	
-	
-}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Object> selectCommentsCount(String where, int top) {
+		return (List<Object>)this.getHibernateTemplate().executeFind(new HibernateCallback() {
+			public Object doInHibernate(final Session session)throws HibernateException, SQLException {				
+				List<Object> list = session.createQuery(where)
+				.setMaxResults(top)
+				.list();
+				return list;
+			}
+		});
+	}}

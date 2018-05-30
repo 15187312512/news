@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<validations xmlns="http://www.erayt.com/solar2/connector/core/validate">
+	<validation name="loginForm">
+        <item name="username">
+            <rule name="maxlength" value="5" message="不能超过5个字符"></rule>
+        </item>
+        <item name="coinId">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+    </validation>
+    <validation name="paramListForm">
+        <item name="goodId">
+            <rule name="maxlength" value="5" message="不能超过5个字符"></rule>
+        </item>
+        <item name="coinId">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+    </validation>
+    <validation name="changeForm">
+        <item name="currOne">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="currTwo">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="type">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="balCode">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="isPub">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="ppfs">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="spotAvalible">
+           <rule name="maxlength" value="5" message="不能超过5个字符"></rule>
+        </item>
+        <item name="forwardAvalible">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="spotBaseUnit">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="forwardBaseUnit">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="spotUnit">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+        <item name="forwardUnit">
+            <rule name="required" value="1" message="不能为空"></rule>
+        </item>
+    </validation>
+</validations>

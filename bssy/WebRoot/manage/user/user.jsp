@@ -1,5 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <script type="text/javascript">
    
 </SCRIPT>
@@ -15,15 +19,15 @@
 
 			<div class="unit">
 				<label>原密码</label>
-				 <input type="text" name="password1" size="30" class="required" />
+				 <input  name="password1" id="user_password" size="30" class="required" type="password"/>
 			</div>
 			<div class="unit">
 				<label>新密码</label>
-				 <input type="text" name="password2" size="30" class="required" />
+				 <input  name="password2" size="30" class="required" type="password" />
 			</div>
 			<div class="unit">
 				<label>确认新密码</label>
-				 <input type="text" name="password3" size="30" class="required" />
+				 <input  name="password3" size="30" class="required" type="password" />
 			</div>
 			
 			

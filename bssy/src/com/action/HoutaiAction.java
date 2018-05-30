@@ -115,7 +115,7 @@ public class HoutaiAction extends ActionSupport {
 	public void changepwd2() throws IOException {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("gbk");
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		Manage u = (Manage) session.getAttribute("wangzhanmanage");
@@ -397,13 +397,11 @@ public class HoutaiAction extends ActionSupport {
 //删除新闻操作
 	public void contentdelete() throws IOException {
 		HttpServletRequest request = ServletActionContext.getRequest();
-//		Content bean = contentDao.selectBean(" where id= "
-//				+ request.getParameter("id"));
+		Content bean = contentDao.selectBean(" where id= "
+				+ request.getParameter("id"));
 //		bean.setContentlock(1);
 //		contentDao.updateBean(bean);
-		String []id=request.getParameterValues("conIdList");
-		String id2=request.getParameter("conIdList");
-		System.out.println(id2);
+		contentDao.deleteBean(bean);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();

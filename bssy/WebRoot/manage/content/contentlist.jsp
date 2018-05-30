@@ -85,9 +85,9 @@
 		<ul class="toolBar">
 
 			
-			<li><a class="add" href="houtaimethod!contentadd.action" target="dialog" mask="true"><span>添加内容</span></a></li>
+			<li><a class="add" href="houtaimethod!contentadd.action" target="dialog" mask="true" width="1200" height="650"><span>添加内容</span></a></li>
 
-			<li><a class="edit" href="houtaimethod!contentupdate.action?id={sid_user}" target="dialog" mask="true"><span>修改内容</span></a></li>
+			<li><a class="edit" href="houtaimethod!contentupdate.action?id={sid_user}" target="dialog" mask="true" width="1200" height="650"><span>修改内容</span></a></li>
 
 			<li><a class="delete" href="houtaimethod!contentdelete.action?id={sid_user}" target="ajaxTodo" title="确定要删除吗?" ><span>删除内容</span></a></li>
 
@@ -104,7 +104,6 @@
 	<table class="table" width="100%" layoutH="138">
 		<thead>
 			<tr>
-				<th width="120">多选</th>
 				
 				<th width="120">栏目</th>
 				
@@ -128,9 +127,6 @@
 
 			<c:forEach items="${list}" var="bean"  >
 			<tr target="sid_user" rel="${bean.id}">
-				<td>
-					<input type="checkbox" name="conIdList" target="conIdList" rel="${bean.id}" />
-				</td>
 				<td>
 				${bean.lanmu.lanmuming}
 				</td>

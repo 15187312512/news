@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=src/struts.xml,WebRoot/editor/dialog/quickformat.htm
+validator.Checked=src/struts.xml,WebRoot/jsp/index.jsp,WebRoot/editor/dialog/quickformat.htm
 validator.Unchecked=
